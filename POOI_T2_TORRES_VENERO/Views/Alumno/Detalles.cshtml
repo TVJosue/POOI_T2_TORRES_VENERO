@@ -1,0 +1,84 @@
+﻿@model POOI_T2_TORRES_VENERO.Models.Alumno
+
+@{
+    ViewBag.Title = "Detalles del Alumno";
+}
+
+<h2>Detalles del Alumno</h2>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Mensaje
+    </div>
+}
+else
+{
+    <div>
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                DNI
+            </dt>
+
+            <dd>
+                @Model.dni
+            </dd>
+
+            <dt>
+                Nombres
+            </dt>
+
+            <dd>
+                @Model.nombres
+            </dd>
+
+            <dt>
+                Apellidos
+            </dt>
+
+            <dd>
+                @Model.apellidos
+            </dd>
+
+            <dt>
+                Carrera
+            </dt>
+
+            <dd>
+                @Model.carrera
+            </dd>
+
+            <dt>
+                Ciclo
+            </dt>
+
+            <dd>
+                @Model.ciclo
+            </dd>
+
+        </dl>
+
+    </div>
+
+    <p>
+
+        @Html.ActionLink(
+            "ACTUALIZAR",
+            "Actualizar",
+            "Alumno",
+            new { dni = Model.dni },
+            new { @class = "btn btn-warning" }
+        )
+
+        @Html.ActionLink(
+            "REGRESAR",
+            "Index",
+            "Alumno",
+            null,
+            new { @class = "btn btn-secondary" }
+        )
+
+    </p>
+}

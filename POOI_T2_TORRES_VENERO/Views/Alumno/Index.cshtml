@@ -1,0 +1,89 @@
+﻿@model IEnumerable<POOI_T2_TORRES_VENERO.Models.Alumno>
+
+@{
+    ViewBag.Title = "Lista de Alumnos";
+}
+
+<h2>Lista de Alumnos</h2>
+
+<p>
+    @Html.ActionLink(
+        "AGREGAR ALUMNO",
+        "Agregar",
+        "Alumno",
+        null,
+        new { @class = "btn btn-primary" }
+    )
+</p>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div id="mensaje" class="alert alert-info">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<table class="table table-bordered table-striped">
+
+    <tr>
+        <th>DNI</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Carrera</th>
+        <th>Ciclo</th>
+        <th>Acciones</th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.dni</td>
+                <td>@item.nombres</td>
+                <td>@item.apellidos</td>
+                <td>@item.carrera</td>
+                <td>@item.ciclo</td>
+
+                <td>
+                    @Html.ActionLink(
+                        "Detalles",
+                        "Detalles",
+                        new { dni = item.dni }
+                    )
+                    |
+                    @Html.ActionLink(
+                        "Actualizar",
+                        "Actualizar",
+                        new { dni = item.dni }
+                    )
+                    |
+                    @Html.ActionLink(
+                        "Eliminar",
+                        "Eliminar",
+                        new { dni = item.dni },
+                        new
+                        {
+                            onclick = "return confirm('¿Está seguro de eliminar este alumno?');"
+                        }
+                    )
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+<script>
+
+    setTimeout(function () {
+
+        var mensaje = document.getElementById("mensaje");
+
+        if (mensaje) {
+            mensaje.style.display = "none";
+        }
+
+    }, 5000);
+
+</script>
